@@ -1,0 +1,90 @@
+{
+  "kind": "collectionType",
+  "collectionName": "devis_piscines",
+  "info": {
+    "singularName": "devis-piscine",
+    "pluralName": "devis-piscines",
+    "displayName": "Demande_Devis",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Forme_Piscine": {
+      "type": "enumeration",
+      "enum": [
+        "RECTANGULAIRE",
+        "OVALE",
+        "JE NE SAIS PAS"
+      ],
+      "required": true
+    },
+    "Taille_Piscine": {
+      "type": "enumeration",
+      "enum": [
+        "MOINS DE 5 MÈTRES",
+        "ENTRE 5 ET 7 MÈTRES",
+        "ENTRE 7 ET 9 MÈTRES",
+        "PLUS DE 9 MÈTRES"
+      ],
+      "required": false
+    },
+    "Couleur_Coques": {
+      "type": "enumeration",
+      "enum": [
+        "BLANC",
+        "BLEU",
+        "BEIGE",
+        "GRIS"
+      ],
+      "required": true
+    },
+    "Debut_Projet": {
+      "type": "enumeration",
+      "enum": [
+        "D’ICI MOINS DE 3 MOIS",
+        "DANS 3 À 6 MOIS",
+        "DANS 6 MOIS À 1 AN"
+      ],
+      "required": true
+    },
+    "Installation_Souhaitee": {
+      "type": "enumeration",
+      "enum": [
+        "ASSISTANCE",
+        "DE A à Z",
+        "SANS POSE"
+      ],
+      "required": true
+    },
+    "Nom": {
+      "type": "string",
+      "required": true
+    },
+    "Prenoms": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "email",
+      "required": true
+    },
+    "Numero_de_telephone": {
+      "type": "string",
+      "required": true
+    },
+    "Code_Postal": {
+      "type": "string",
+      "required": true
+    },
+    "Souhaite_Contact_Yann": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "Commentaire": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
