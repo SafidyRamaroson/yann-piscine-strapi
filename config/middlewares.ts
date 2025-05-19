@@ -27,7 +27,7 @@ export default [
     config: {
       enabled: true,
       headers: '*',
-      origin: ['http://localhost:1337', 'https://yann-piscines.vercel.app']
+      origin: ['http://localhost:3000', 'https://yann-piscines.vercel.app']
     }
   },
   'strapi::query',
