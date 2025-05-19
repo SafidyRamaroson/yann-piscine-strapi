@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "variante_produits",
+  "info": {
+    "singularName": "variante-produit",
+    "pluralName": "variante-produits",
+    "displayName": "Variante_Produit",
+    "description": "Les variantes de produits disponibles dans le catalogue de l'entreprise"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nom_variante": {
+      "type": "string",
+      "required": true,
+      "default": "FORME_UNIQUE"
+    },
+    "quantite_valeur": {
+      "type": "integer",
+      "required": false
+    },
+    "quantite_unite": {
+      "type": "enumeration",
+      "enum": [
+        "KG",
+        "G",
+        "L",
+        "ML"
+      ]
+    },
+    "stock": {
+      "type": "biginteger",
+      "required": true,
+      "default": "0"
+    },
+    "prix": {
+      "type": "decimal",
+      "required": true,
+      "default": 0
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

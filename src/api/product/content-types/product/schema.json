@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Produits",
+    "description": "Liste des produts disponibles dans le catalogue de l'entreprise"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "required": true
+    },
+    "categorie": {
+      "type": "enumeration",
+      "enum": [
+        "CHIMIE",
+        "ROBOT",
+        "COLLE ET OUTILLAGE",
+        "FILTRATION ET TRAITEMENT AUTOMATIQUE",
+        "PIECES DETACHEES",
+        "PISCINES",
+        "SPA",
+        "ACCESSOIRES ET EQUIPEMENTS"
+      ],
+      "required": true
+    },
+    "variantes_produits": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::variante-produit.variante-produit"
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

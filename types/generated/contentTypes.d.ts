@@ -472,6 +472,97 @@ export interface ApiDevisPiscineDevisPiscine
   };
 }
 
+export interface ApiProductProduct extends Struct.CollectionTypeSchema {
+  collectionName: 'products';
+  info: {
+    description: "Liste des produts disponibles dans le catalogue de l'entreprise";
+    displayName: 'Produits';
+    pluralName: 'products';
+    singularName: 'product';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    categorie: Schema.Attribute.Enumeration<
+      [
+        'CHIMIE',
+        'ROBOT',
+        'COLLE ET OUTILLAGE',
+        'FILTRATION ET TRAITEMENT AUTOMATIQUE',
+        'PIECES DETACHEES',
+        'PISCINES',
+        'SPA',
+        'ACCESSOIRES ET EQUIPEMENTS',
+      ]
+    > &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product.product'
+    > &
+      Schema.Attribute.Private;
+    nom: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    variantes_produits: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::variante-produit.variante-produit'
+    >;
+  };
+}
+
+export interface ApiVarianteProduitVarianteProduit
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'variante_produits';
+  info: {
+    description: "Les variantes de produits disponibles dans le catalogue de l'entreprise";
+    displayName: 'Variante_Produit';
+    pluralName: 'variante-produits';
+    singularName: 'variante-produit';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::variante-produit.variante-produit'
+    > &
+      Schema.Attribute.Private;
+    nom_variante: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'FORME_UNIQUE'>;
+    prix: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    quantite_unite: Schema.Attribute.Enumeration<['KG', 'G', 'L', 'ML']>;
+    quantite_valeur: Schema.Attribute.Integer;
+    stock: Schema.Attribute.BigInteger &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'0'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -983,6 +1074,8 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::contact.contact': ApiContactContact;
       'api::devis-piscine.devis-piscine': ApiDevisPiscineDevisPiscine;
+      'api::product.product': ApiProductProduct;
+      'api::variante-produit.variante-produit': ApiVarianteProduitVarianteProduit;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
