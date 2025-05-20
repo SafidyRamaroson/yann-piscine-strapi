@@ -37,6 +37,10 @@
     "description": {
       "type": "text",
       "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "nom"
     }
   }
 }
