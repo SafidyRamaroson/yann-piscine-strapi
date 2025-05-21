@@ -11,22 +11,22 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "Nom": {
+    "nom": {
       "type": "string",
       "required": true
     },
-    "Prenoms": {
+    "prenoms": {
       "type": "string"
     },
-    "Numero_telephone": {
+    "numero_telephone": {
       "type": "string",
       "required": true
     },
-    "Email": {
+    "email": {
       "type": "email",
       "required": true
     },
-    "Message": {
+    "message": {
       "type": "text",
       "required": true
     }

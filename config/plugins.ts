@@ -16,18 +16,14 @@ module.exports = ({ env }) => ({
 	},
 	email: {
 		config: {
-			provider: 'nodemailer',
+			provider: env('EMAIL_PROVIDER'),
 			providerOptions: {
-				host: env('EMAIL_SMTP_HOST', 'smtp.mailtrap.io'),
-				port: env.int('EMAIL_SMTP_PORT', 2525),
-				auth: {
-					user: env('EMAIL_SMTP_USER'),
-					pass: env('EMAIL_SMTP_PASS'),
-				},
-			},
+				apiKey: env('API_KEY'),
+			  },
 			settings: {
-				defaultFrom: env('EMAIL_ADDRESS_FROM'),
-				defaultReplyTo: env('EMAIL_ADDRESS_REPLY'),
+				defaultSenderEmail: 'safidyramaroson.patrick@gmail.com',
+        		defaultSenderName: 'Yann Piscines Web',
+        		defaultReplyTo: 'safidyramaroson.patrick@gmail.com',
 			},
 		},
 	},

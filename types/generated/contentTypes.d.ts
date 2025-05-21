@@ -388,17 +388,17 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Email: Schema.Attribute.Email & Schema.Attribute.Required;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::contact.contact'
     > &
       Schema.Attribute.Private;
-    Message: Schema.Attribute.Text & Schema.Attribute.Required;
-    Nom: Schema.Attribute.String & Schema.Attribute.Required;
-    Numero_telephone: Schema.Attribute.String & Schema.Attribute.Required;
-    Prenoms: Schema.Attribute.String;
+    message: Schema.Attribute.Text & Schema.Attribute.Required;
+    nom: Schema.Attribute.String & Schema.Attribute.Required;
+    numero_telephone: Schema.Attribute.String & Schema.Attribute.Required;
+    prenoms: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
