@@ -419,16 +419,14 @@ export interface ApiDevisPiscineDevisPiscine
     draftAndPublish: true;
   };
   attributes: {
-    Code_Postal: Schema.Attribute.String & Schema.Attribute.Required;
-    Commentaire: Schema.Attribute.Text & Schema.Attribute.Required;
-    Couleur_Coques: Schema.Attribute.Enumeration<
-      ['BLANC', 'BLEU', 'BEIGE', 'GRIS']
-    > &
+    code_postal: Schema.Attribute.String & Schema.Attribute.Required;
+    commentaire: Schema.Attribute.Text & Schema.Attribute.Required;
+    couleur: Schema.Attribute.Enumeration<['BLANC', 'BLEU', 'BEIGE', 'GRIS']> &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Debut_Projet: Schema.Attribute.Enumeration<
+    debut: Schema.Attribute.Enumeration<
       [
         'D\u2019ICI MOINS DE 3 MOIS',
         'DANS 3 \u00C0 6 MOIS',
@@ -436,12 +434,12 @@ export interface ApiDevisPiscineDevisPiscine
       ]
     > &
       Schema.Attribute.Required;
-    Email: Schema.Attribute.Email & Schema.Attribute.Required;
-    Forme_Piscine: Schema.Attribute.Enumeration<
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    forme: Schema.Attribute.Enumeration<
       ['RECTANGULAIRE', 'OVALE', 'JE NE SAIS PAS']
     > &
       Schema.Attribute.Required;
-    Installation_Souhaitee: Schema.Attribute.Enumeration<
+    installtion: Schema.Attribute.Enumeration<
       ['ASSISTANCE', 'DE A \u00E0 Z', 'SANS POSE']
     > &
       Schema.Attribute.Required;
@@ -451,14 +449,14 @@ export interface ApiDevisPiscineDevisPiscine
       'api::devis-piscine.devis-piscine'
     > &
       Schema.Attribute.Private;
-    Nom: Schema.Attribute.String & Schema.Attribute.Required;
-    Numero_de_telephone: Schema.Attribute.String & Schema.Attribute.Required;
-    Prenoms: Schema.Attribute.String;
+    nom: Schema.Attribute.String & Schema.Attribute.Required;
+    numero_telephone: Schema.Attribute.String & Schema.Attribute.Required;
+    prenoms: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    Souhaite_Contact_Yann: Schema.Attribute.Boolean &
+    souhaite_contact_yann: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
-    Taille_Piscine: Schema.Attribute.Enumeration<
+    taille: Schema.Attribute.Enumeration<
       [
         'MOINS DE 5 M\u00C8TRES',
         'ENTRE 5 ET 7 M\u00C8TRES',

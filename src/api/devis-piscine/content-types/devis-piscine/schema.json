@@ -11,7 +11,7 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "Forme_Piscine": {
+    "forme": {
       "type": "enumeration",
       "enum": [
         "RECTANGULAIRE",
@@ -20,7 +20,7 @@
       ],
       "required": true
     },
-    "Taille_Piscine": {
+    "taille": {
       "type": "enumeration",
       "enum": [
         "MOINS DE 5 MÈTRES",
@@ -30,7 +30,7 @@
       ],
       "required": false
     },
-    "Couleur_Coques": {
+    "couleur": {
       "type": "enumeration",
       "enum": [
         "BLANC",
@@ -40,7 +40,7 @@
       ],
       "required": true
     },
-    "Debut_Projet": {
+    "debut": {
       "type": "enumeration",
       "enum": [
         "D’ICI MOINS DE 3 MOIS",
@@ -49,7 +49,7 @@
       ],
       "required": true
     },
-    "Installation_Souhaitee": {
+    "installtion": {
       "type": "enumeration",
       "enum": [
         "ASSISTANCE",
@@ -58,31 +58,31 @@
       ],
       "required": true
     },
-    "Nom": {
+    "nom": {
       "type": "string",
       "required": true
     },
-    "Prenoms": {
+    "prenoms": {
       "type": "string"
     },
-    "Email": {
+    "email": {
       "type": "email",
       "required": true
     },
-    "Numero_de_telephone": {
+    "numero_telephone": {
       "type": "string",
       "required": true
     },
-    "Code_Postal": {
+    "code_postal": {
       "type": "string",
       "required": true
     },
-    "Souhaite_Contact_Yann": {
+    "souhaite_contact_yann": {
       "type": "boolean",
       "default": false,
       "required": true
     },
-    "Commentaire": {
+    "commentaire": {
       "type": "text",
       "required": true
     }
