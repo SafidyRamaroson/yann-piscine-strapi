@@ -12,6 +12,7 @@ module.exports = {
       const email = result.email;
       const message = result.message || '';
 
+      // Envoi email à l'admin
       await strapi.plugins['email'].services.email.send({
         to: toEmail,
         subject: `Nouveau message de ${nom} ${prenoms}`,
@@ -28,7 +29,9 @@ ${message}
         `,
       });
 
-        console.log('emailClient',email)
+      // Vérification et envoi accusé de réception
+      if (email) {
+        console.log('Envoi accusé de réception à:', email);
         await strapi.plugins['email'].services.email.send({
           to: email,
           subject: 'Accusé de réception - Votre demande a bien été reçue',
@@ -51,10 +54,12 @@ Cordialement,
 L'équipe de Yann Piscine
           `,
         });
-        console.log('Accusé de réception envoyé à l’utilisateur.');
-        console.warn('Adresse email de l’utilisateur non fournie, aucun accusé de réception envoyé.');
+        console.log('Accusé de réception envoyé avec succès');
+      } else {
+        console.warn('Adresse email de l\'utilisateur non fournie, aucun accusé de réception envoyé.');
+      }
     } catch (err) {
-      strapi.log.error('Erreur lors de l’envoi des e-mails :', err);
+      strapi.log.error('Erreur lors de l\'envoi des e-mails :', err);
     }
   },
 };
