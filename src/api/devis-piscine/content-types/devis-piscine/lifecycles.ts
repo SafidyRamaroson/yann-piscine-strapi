@@ -1,58 +1,60 @@
 module.exports = {
-    async afterCreate(event) {
-      const { result } = event;
-  
-      try {
-        console.log('DEBUG DEVIS-PISCINE:', result);
-  
-        const toEmail = 'safidyramaroson.patrick@gmail.com';
-  
-        const nom = result.nom || 'Nom inconnu';
-        const prenoms = result.prenoms || 'Non précisé';
-        const email = result.email || 'Non renseigné';
-        const tel = result.numero_telephone || 'Non renseigné';
-        const codePostal = result.code_postal || 'Non renseigné';
-        const commentaire = result.commentaire || 'Aucun commentaire';
-  
-        const forme = result.forme || 'Non précisé';
-        const taille = result.taille || 'Non précisé';
-        const couleur = result.couleur || 'Non précisé';
-        const debut = result.debut || 'Non précisé';
-        const installtion = result.installtion || 'Non précisé';
-        const souhaiteContactYann = result.souhaite_contact_yann ? 'OUI' : 'NON';
-  
-        const emailText = `
-  Vous avez reçu une nouvelle demande de devis piscine :
-  
-  👤 Infos personnelles :
-  Nom : ${nom}
-  Prénoms : ${prenoms}
-  Email : ${email}
-  Téléphone : ${tel}
-  Code postal : ${codePostal}
-  
-  📐 Détails du projet :
-  Forme : ${forme}
-  Taille : ${taille}
-  Couleur : ${couleur}
-  Début souhaité : ${debut}
-  Installation : ${installtion}
-  Souhaite être contacté par Yann : ${souhaiteContactYann}
-  
-  📝 Commentaire :
-  ${commentaire}
-        `;
-  
+  async afterCreate(event) {
+    const { result } = event;
+
+    try {
+      console.log('DEBUG CONTACT:', result);
+
+      const toEmail = 'safidyramaroson.patrick@gmail.com';
+      const nom = result.nom || 'Nom inconnu';
+      const prenoms = result.prenoms || 'Non précisé';
+      const tel = result.numero_telephone || 'Non renseigné';
+      const email = result.email;
+      const message = result.message || '';
+
+      await strapi.plugins['email'].services.email.send({
+        to: toEmail,
+        subject: `Nouveau message de ${nom} ${prenoms}`,
+        text: `
+Vous avez reçu un nouveau message via le formulaire de contact :
+
+Nom : ${nom}
+Prénoms : ${prenoms}
+Téléphone : ${tel}
+Email : ${email}
+
+Message :
+${message}
+        `,
+      });
+
+        console.log('emailClient',email)
         await strapi.plugins['email'].services.email.send({
-          to: toEmail,
-          subject: `Demande de devis piscine – ${nom} ${prenoms}`,
-          text: emailText,
+          to: email,
+          subject: 'Accusé de réception - Votre demande a bien été reçue',
+          text: `
+Bonjour ${prenoms || nom},
+
+Nous vous remercions pour votre message. Votre demande a bien été reçue et nous y répondrons dans les plus brefs délais.
+
+Résumé de votre message :
+-------------------------
+Nom : ${nom}
+Prénoms : ${prenoms}
+Téléphone : ${tel}
+Email : ${email}
+
+Message :
+${message}
+
+Cordialement,
+L'équipe de Yann Piscine
+          `,
         });
-  
-        console.log('E-mail devis piscine envoyé avec succès !');
-      } catch (err) {
-        strapi.log.error('Erreur lors de l’envoi de l’e-mail devis piscine :', err);
-      }
-    },
-  };
-  
+        console.log('Accusé de réception envoyé à l’utilisateur.');
+        console.warn('Adresse email de l’utilisateur non fournie, aucun accusé de réception envoyé.');
+    } catch (err) {
+      strapi.log.error('Erreur lors de l’envoi des e-mails :', err);
+    }
+  },
+};

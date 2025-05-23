@@ -9,10 +9,9 @@ module.exports = {
       const nom = result.nom || 'Nom inconnu';
       const prenoms = result.prenoms || 'Non précisé';
       const tel = result.numero_telephone || 'Non renseigné';
-      const email = result.email;
+      const email = result.email || 'Non renseigné';
       const message = result.message || '';
 
-      // Envoi email à l'admin
       await strapi.plugins['email'].services.email.send({
         to: toEmail,
         subject: `Nouveau message de ${nom} ${prenoms}`,
@@ -28,38 +27,9 @@ Message :
 ${message}
         `,
       });
-
-      // Vérification et envoi accusé de réception
-      if (email) {
-        console.log('Envoi accusé de réception à:', email);
-        await strapi.plugins['email'].services.email.send({
-          to: email,
-          subject: 'Accusé de réception - Votre demande a bien été reçue',
-          text: `
-Bonjour ${prenoms || nom},
-
-Nous vous remercions pour votre message. Votre demande a bien été reçue et nous y répondrons dans les plus brefs délais.
-
-Résumé de votre message :
--------------------------
-Nom : ${nom}
-Prénoms : ${prenoms}
-Téléphone : ${tel}
-Email : ${email}
-
-Message :
-${message}
-
-Cordialement,
-L'équipe de Yann Piscine
-          `,
-        });
-        console.log('Accusé de réception envoyé avec succès');
-      } else {
-        console.warn('Adresse email de l\'utilisateur non fournie, aucun accusé de réception envoyé.');
-      }
+      console.log('E-mail de contact envoyé avec succès !');
     } catch (err) {
-      strapi.log.error('Erreur lors de l\'envoi des e-mails :', err);
+      strapi.log.error('Erreur lors de l’envoi de l’e-mail de contact :', err);
     }
   },
 };
