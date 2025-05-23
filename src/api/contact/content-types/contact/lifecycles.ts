@@ -28,7 +28,7 @@ ${message}
         `,
       });
 
-      
+        console.log('emailClient',email)
         await strapi.plugins['email'].services.email.send({
           to: email,
           subject: 'Accusé de réception - Votre demande a bien été reçue',
