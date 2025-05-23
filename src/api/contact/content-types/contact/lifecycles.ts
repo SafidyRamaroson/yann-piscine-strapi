@@ -27,9 +27,38 @@ Message :
 ${message}
         `,
       });
-      console.log('E-mail de contact envoyé avec succès !');
+
+      // Accusé de réception vers l'utilisateur
+      if (email !== 'Non renseigné') {
+        await strapi.plugins['email'].services.email.send({
+          to: email,
+          subject: 'Accusé de réception - Votre demande a bien été reçue',
+          text: `
+Bonjour ${prenoms || nom},
+
+Nous vous remercions pour votre message. Votre demande a bien été reçue et nous y répondrons dans les plus brefs délais.
+
+Résumé de votre message :
+-------------------------
+Nom : ${nom}
+Prénoms : ${prenoms}
+Téléphone : ${tel}
+Email : ${email}
+
+Message :
+${message}
+
+Cordialement,
+L'équipe de Yann Piscine
+          `,
+        });
+        console.log('Accusé de réception envoyé à l’utilisateur.');
+      } else {
+        console.warn('Adresse email de l’utilisateur non fournie, aucun accusé de réception envoyé.');
+      }
+
     } catch (err) {
-      strapi.log.error('Erreur lors de l’envoi de l’e-mail de contact :', err);
+      strapi.log.error('Erreur lors de l’envoi des e-mails :', err);
     }
   },
 };
