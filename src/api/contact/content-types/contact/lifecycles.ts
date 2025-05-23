@@ -9,7 +9,7 @@ module.exports = {
       const nom = result.nom || 'Nom inconnu';
       const prenoms = result.prenoms || 'Non précisé';
       const tel = result.numero_telephone || 'Non renseigné';
-      const email = result.email || 'Non renseigné';
+      const email = result.email;
       const message = result.message || '';
 
       await strapi.plugins['email'].services.email.send({
@@ -28,8 +28,7 @@ ${message}
         `,
       });
 
-      // Accusé de réception vers l'utilisateur
-      if (email !== 'Non renseigné') {
+      
         await strapi.plugins['email'].services.email.send({
           to: email,
           subject: 'Accusé de réception - Votre demande a bien été reçue',
@@ -53,10 +52,7 @@ L'équipe de Yann Piscine
           `,
         });
         console.log('Accusé de réception envoyé à l’utilisateur.');
-      } else {
         console.warn('Adresse email de l’utilisateur non fournie, aucun accusé de réception envoyé.');
-      }
-
     } catch (err) {
       strapi.log.error('Erreur lors de l’envoi des e-mails :', err);
     }
