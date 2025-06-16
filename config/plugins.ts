@@ -21,9 +21,9 @@ module.exports = ({ env }) => ({
 				apiKey: env('API_KEY'),
 			  },
 			settings: {
-				defaultSenderEmail: 'safidyramaroson.patrick@gmail.com',
-        		defaultSenderName: 'Yann Piscines Web',
-        		defaultReplyTo: 'safidyramaroson.patrick@gmail.com',
+				defaultSenderEmail: 'safidyrm.pro@gmail.com',
+        		defaultSenderName: 'yannpiscines.com',
+        		defaultReplyTo: 'safidyrm.pro@gmail.com',
 			},
 		},
 	},
